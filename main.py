@@ -1,18 +1,25 @@
-class complex:
-    def __init__(self,r,i):
-        self.real=r
-        self.imaginary=i
-    def __add__(self,c):
-        return complex(self.real+c.real,self.imaginary+c.imaginary)
+class vector:
+    def __init__(self,vec):
+        self.ve=vec 
     def __str__(self):
-        return f"{self.real}+{self.imaginary}i"
-    def __mul__(self, c):
-        multipliedReal= self.real*c.real-self.imaginary*c.imaginary
-        multipiedImaginary=self.real*c.imaginary+ self.imaginary*c.real
-        return complex(multipliedReal,multipiedImaginary)
-    def __str__(self):
-        return f"{self.real}+{self.imaginary}i"
-c1= complex(2,3)
-c2=complex(4,5)
-print(c1+c2)
-print(c1*c2)
+        str1=""
+        index=0
+        for i in self.ve:
+            str1=str1+f"{i}A{index} + "
+            index+=1
+        return str1[:-2]
+    def __add__(self,vec1):
+        new=[]
+        for i in range(len(self.ve)):
+            new.append(self.ve[i]+vec1.ve[i])
+        return vector(new)
+    def __mul__(self,vec2):
+        new=[]
+        for i in range(len(self.ve)):
+            new.append(self.ve[i]*vec2.ve[i])
+        return vector(new)
+
+v1=vector([1,4,6,10])
+v2=vector([4,6,3,6])
+print(v1+v2)
+print(v1*v2)
